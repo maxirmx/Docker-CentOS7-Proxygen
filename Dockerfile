@@ -1,11 +1,15 @@
+# ##################################################################################################### #
+# This is a script to create CentOS 7 container development with PROXYGEN and dependencies installed    #
+# ##################################################################################################### #
+
 FROM centos:7
 LABEL mantainer="Maxim [maxirmx] Samsonov <m.samsonov@computer.org>"
 
+# V stands for "version" :)
 ENV V_CMAKE=3.19.0
 ENV V_BOOST=1.74.0
 ENV V_BOOST_=1_74_0
 ENV V_PROXIGEN=2020.11.16.00
-
 
 RUN yum -y update                          \
 &&  yum -y install epel-release            \
@@ -45,9 +49,10 @@ RUN cd /bootstrap \
 && wget https://github.com/facebook/proxygen/archive/v${V_PROXIGEN}.tar.gz -nv -O proxygen.tar.gz \
 && tar -xzf proxygen.tar.gz \
 && cd /bootstrap/proxygen-${V_PROXIGEN}/proxygen/ \
+# An ugly patching in operations ...
 && sed s/\-DCMAKE_INSTALL_PREFIX=\"\$DEPS_DIR\"/\-DCMAKE_INSTALL_PREFIX=\"\$PREFIX\"/ < build.sh > b.sh \
 && chmod +x b.sh \
-&& ./b.sh -j 8 --prefix /usr/local && ./install.sh \
-&& cd bootstrap && rm -rf /bootstrap 
+&& ./b.sh -j 4 --prefix /usr/local && ./install.sh \
+&& cd /bootstrap && rm -rf /bootstrap 
 
 CMD ["bash"]

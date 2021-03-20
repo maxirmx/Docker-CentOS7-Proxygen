@@ -13,6 +13,8 @@ ENV V_PROXIGEN=2020.11.16.00
 
 RUN yum -y update                          \
 &&  yum -y install epel-release            \
+# The next line is for git 2.x
+&&  yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm \
 &&  yum -y install centos-release-scl      \
 &&  yum -y install devtoolset-8            \
                    double-conversion-devel \

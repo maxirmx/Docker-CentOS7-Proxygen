@@ -18,17 +18,17 @@ RUN yum -y update                          \
 &&  yum -y install centos-release-scl      \
 &&  yum -y install devtoolset-8            \
                    double-conversion-devel \
-                   jemalloc-devel          \ 
+                   jemalloc-devel          \
                    glog-devel              \
                    gflags-devel            \
                    snappy-devel            \
                    libevent-devel          \
-                   libsodium-devel         \ 
+                   libsodium-devel         \
                    gperf                   \
-                   libzstd-devel           \  
+                   libzstd-devel           \
                    xmlto                   \
                    xz-devel                \
-                   bzip2-devel             \ 
+                   bzip2-devel             \
                    openssl-devel           \
                    python3                 \
                    wget                    \
